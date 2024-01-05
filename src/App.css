@@ -36,7 +36,7 @@ ul.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #6bb7d8;
+  border: 1px solid #000000;
   border-radius: 2rem;
   padding-left: 0px;
   @media (max-width: 768px) {

@@ -3,6 +3,7 @@ import TabNavItem from "./TabNavItem";
 import TabContent from "./TabContent";
 // Import our Map Components
 import LeafletComponent from "../MapComponents/LeafletComponent";
+import OpenLayerComponent from "../MapComponents/OpenLayerComponent";
 // import OpenLayersComponent from "../MapComponents/OpenLayersComponent";
 
 
@@ -27,7 +28,7 @@ const Tabs = () => {
           <LeafletComponent></LeafletComponent>
         </TabContent>
         <TabContent id="openlayers" activeTab={activeTab}>
-            <p>OL dont work!!</p>
+            <OpenLayerComponent></OpenLayerComponent>
         </TabContent>
         <TabContent id="arcgis" activeTab={activeTab}>
           <p>ArcGIS works!</p>

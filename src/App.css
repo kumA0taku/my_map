@@ -15,9 +15,9 @@
  }
   /* Tab component css*/
  .Tabs{
-  width: 80%;
+  width: 95%;
   height: auto;
-  min-height: 80%;
+  min-height: 90%;
   background: #ebe5e5;
   border: 1px solid #6bb7d8;
   margin: 3.5rem auto 1.5rem;
@@ -31,48 +31,49 @@
 
 /* Tab Navigation */
 ul.nav {
-  width: 60%;
-  margin: 0 auto 2rem;
+  width: 10%;
+  margin: 1 auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #000000;
+  align-items: end;
+  justify-content: space-evenly; 
+  border: 4px solid #000000;
   border-radius: 2rem;
-  padding-left: 0px;
-  @media (max-width: 768px) {
-    width: 90%;
+  @media (max-width: 100px) {
+    width: 50%;
   }
 }
+
 ul.nav li {
-  width: 50%;
+  width: 100%;
   padding: 1rem;
   list-style: none;
   text-align: center;
   cursor: pointer;
   transition: all 0.7s;
 }
+
 ul.nav li:first-child {
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
 }
+
 ul.nav li:last-child {
   border-bottom-right-radius: 2rem;
   border-top-right-radius: 2rem;
 }
-ul.nav li:hover {
-  background: #6bb7d8;
-}
+
+ul.nav li:hover,
 ul.nav li.active {
   background: #6bb7d8;
 }
 
 /* Tab Content Styles */
 .TabContent {
-  font-size: 2rem;
+  font-size: auto;
   text-align: center;
 }
 .map-container {
   position: absolute;
-  height:400px;
-  width: 78%;
+  height: 75%;
+  width: 92%;
 }

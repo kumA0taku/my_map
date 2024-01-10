@@ -8,7 +8,6 @@ import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
 import LayerGroup from "ol/layer/Group";
 import TileWMS from "ol/source/TileWMS";
-import SourceStamen from "ol/source/Stamen";
 import LayerSwitcher from "ol-layerswitcher";
 
 // Import styling

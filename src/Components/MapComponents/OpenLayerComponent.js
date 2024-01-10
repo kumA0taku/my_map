@@ -7,16 +7,12 @@ import { transform } from "ol/proj";
 import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
 import LayerGroup from "ol/layer/Group";
-import LayerImage from "ol/layer/Image";
-import SourceImageArcGISRest from "ol/source/ImageArcGISRest";
-import TileWMS from 'ol/source/TileWMS';
+import TileWMS from "ol/source/TileWMS";
 import SourceStamen from "ol/source/Stamen";
-import SourceXYZ from "ol/source/XYZ";
 import LayerSwitcher from "ol-layerswitcher";
 
 // Import styling
 import "../../App.css";
-// import { layerGroup } from "leaflet";
 
 const OpenLayerComponent = () => {
   const mapContainerRef = useRef(null);
@@ -33,32 +29,6 @@ const OpenLayerComponent = () => {
         new LayerGroup({
           title: "Base maps",
           layers: [
-            new LayerGroup({
-              title: "Water color with labels",
-              type: "base",
-              combine: true,
-              visible: false,
-              layers: [
-                new TileLayer({
-                  source: new SourceStamen({
-                    layer: "watercolor",
-                  }),
-                }),
-                new TileLayer({
-                  source: new SourceStamen({
-                    layer: "terrain-labels",
-                  }),
-                }),
-              ],
-            }),
-            new TileLayer({
-              title: "water color",
-              type: "base",
-              visible: false,
-              source: new SourceStamen({
-                layer: "watercolor",
-              }),
-            }),
             new TileLayer({
               title: "OSM",
               type: "base",
@@ -68,17 +38,37 @@ const OpenLayerComponent = () => {
           ],
         }),
         new LayerGroup({
-            title: 'Overlays',
-            layers:[
-              new TileLayer({
-                title: 'Countries',
-                source: new SourceXYZ({
-                  ratio: 1,
-                  params: {'LAYERS': 'show:0'},
-                  url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          title: "Overlays",
+          fold: "open",
+          layers: [
+            new LayerGroup({
+              title: "Boundaries",
+              fold: "open",
+              layers: [
+                new TileLayer({
+                  title: "Counties",
+                  visible: true,
+                  opacity: 0.5,
+                  source: new TileWMS({
+                    url: "https://ows.terrestris.de/osm/service",
+                    params: {
+                      LAYERS: "OSM-WMS",
+                    },
+                  }),
                 }),
-              }),
-            ],
+                new TileLayer({
+                  title: "States",
+                  visible: false,
+                  source: new TileWMS({
+                    url: "https://ows.terrestris.de/osm/service",
+                    params: {
+                      LAYERS: "OSM-WMS",
+                    },
+                  }),
+                }),
+              ],
+            }),
+          ],
         }),
       ],
       view: new View({
@@ -87,14 +77,17 @@ const OpenLayerComponent = () => {
       }),
     });
 
-    const layerSwitcher = new LayerSwitcher();
+    const layerSwitcher = new LayerSwitcher({
+      target: mapContainerRef.current,
+      tipLabel: "Légende", // Optional label for button
+      groupSelectStyle: "group", // Can be 'children' [default], 'group' or 'none'
+    });
     map.current.addControl(layerSwitcher);
 
     return () => {
       map.current.setTarget(null);
     };
   }, [lat, lng, zoom]);
-
   return <div className="map-container" ref={mapContainerRef} />;
 };
 
